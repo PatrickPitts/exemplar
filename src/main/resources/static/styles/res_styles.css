@@ -1,0 +1,61 @@
+body{
+	font-family: 'Maven Pro', sans-serif;
+	background-color:darkgreen;
+}
+h3{
+	text-indent: 3em;
+	
+}
+h4{
+	margin-bottom:0;
+}
+img{
+	width:150px;
+	height:200px;
+	object-fit:contain;
+	margin:2em;
+	border:2px solid black;
+}
+.resume-body{
+	width:80%;
+	border: 2px solid black;
+	padding:30px;
+	background-color:white;
+	margin:50px auto;
+	
+}
+.res-head{
+	text-align: center;
+}
+
+.skill-table{
+	width: 100%;
+}
+
+.skill-table td{
+	vertical-align: top;
+}
+
+.exp-name{
+	width:100%;
+	overflow:hidden;
+}
+
+.exp-name div{
+	float:left;
+	width: 50%;
+}
+
+.exp{
+	margin-bottom:15px;
+}
+
+table{
+	width:100%;
+}
+
+.exp-table td{
+	padding-top:0;
+	padding-bottom:0;
+	font-weight:bold;
+}

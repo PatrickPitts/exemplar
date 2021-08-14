@@ -1,0 +1,7 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:each="f : ${fragments}">
+    <th:block th:insert="${f}"></th:block>
+</th:block>
+<!--<th:block th:insert="fragments :: resume-page"></th:block>-->
+</html>
