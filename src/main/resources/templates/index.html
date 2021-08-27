@@ -1,7 +1,18 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<th:block th:each="f : ${fragments}">
-    <th:block th:insert="${f}"></th:block>
-</th:block>
-<!--<th:block th:insert="fragments :: resume-page"></th:block>-->
+<head>
+    <title>Resume</title>
+    <link rel="stylesheet" th:href="@{/styles/res_styles.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<th:block th:insert="~{fragments :: header-all(${title}, ${subtitle}) }"></th:block>
+<th:block th:insert="~{fragments :: side-nav}"></th:block>
+<div id="content">
+    <th:block th:insert="~{${file} :: ${fragment}}"></th:block>
+</div>
+</body>
 </html>

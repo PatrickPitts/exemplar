@@ -1,0 +1,200 @@
+<th:block th:fragment="exemplar">
+    <p>this page describes the technology powering this site!</p>
+    <h3>What is Exemplar?</h3>
+    This website is an brief example of my web application engineering ability (hence the name, aren't I clever?). This
+    site follows the basic MVC design pattern; most views are built with the same general framework, whose
+    implementation
+    is goverened by the data model served by a central controller class on the back end. As a site largely static in
+    content, the basic MVC design is the extent of technology and design philosophy used. However, there are other
+    examples of applications I have created that implement additional features expected in a full stack web application,
+    such as database integration, security, and account management (take a look at my <a
+        th:href="@{\app-dev\spellbook-mngr}">Spellbook Manager page
+</a> to see more).
+    <h3>Backend powered by Spring Boot</h3>
+    The back end of the Exemplar web application is built with the Spring Boot framework. Spring is an application
+    framework built on JavaEE, which itself supports a full suite of web application business operations such as
+    database interfacing and application security. Spring provides several useful metatools (Inversion of Control,
+    Dependancy Injection) that are valuable in application development. Standalone Spring still requires manual
+    configuration of many base functions one expects in an enterprise application (database, security). Spring Boot is
+    an attempt to streamline the boilerplating of such functions, and import them directly into the framework. However,
+    in order to leverage these built in tools a developer must know how they are configured within the Spring
+    Boot framework, how to implement them within the desired context, and how to further configure them to fit the needs
+    of the application. While this process can be complicated at times, ultimately Spring Boot has been able to achieve
+    my vision for this website: a clear and concise controller system delegating content, a powerful (if lightly
+    used in this case) data model system controlling data and content served, and an effective view rendering engine in
+    Thymeleaf.
+    <h3>Front end powered by Thymeleaf</h3>
+    <p>The front end of the Exemplar web application is formally built in pure HTML/CSS with a dash of base JS support,
+        though the HTML files were built through the Thymeleaf templating engine.</p>
+    <p>Thymeleaf is a server-side HTML template engine powered by the Spring framework. It functions
+        similar to JSTL in that it provides more sophisticated control logic tools for designing views in HTML. It
+        allows
+        for Java Bean and POJO implementation, directly in the XML tag structure of your HTML files. It allows the
+        developer to create much more complex and dynamic views, supported by stronger integration with Spring project
+        structure. </p>
+    <p>The biggest divergence from JSTL is in how these features are implemented. Thymeleaf's templating
+        syntax integrates directly into the XML attribute structure, giving the design process a more "natural" feel to
+        it. Thymeleaf syntax allows for direct integration of POJOs into view design: POJO fields can be accessed simply
+        and direclty as attributes to HTML elements, POJO fields can be wired directly to form fields and referenced as
+        POJOs again in the back end when the form is submitted, and custom-built Thymeleaf-driven HTML elements can be
+        prototyped and implemented as native HTML; no Java compiling needed. Furthermore, Spring Boot supports Thymeleaf
+        right out of the box; simply including Thymeleaf as a dependency for the project with Maven incorporates the
+        Thymeleaf dialect and template engine directly into the project. Developers can just include .html file
+        resources
+        in the <code>src/main/resources/templates</code>; Spring's internal functionality with Thymeleaf integration
+        defaults to looking for .html files and templates in this directory. Of course, configuring the location of
+        such files in the Spring file structure is possible and quite straightforward. I've found that creating a
+        Java configuration class (with the <code>@Configuration</code> annotation) to programmatically configure
+        Thymeleaf settings works better for me, though Spring supports YAML configuration, as well as its
+        <code>application.properties</code> file.
+    </p>
+    <h3>Front end NOT powered by JS/Angular/React (mostly)</h3>
+    <p>Thymeleaf is all well and good, but by no means the most popular templating tool out there. When planning a web
+        application, developers might be inclined to use JavaScript, Angular, Node.js, and/or React to power the front
+        end.
+        So why not here? There are a few answers to that. First, Angular and Thymeleaf have very similar templating
+        structure.
+        Angular's integration with the XML attribute structure is very similar to Thymeleaf; in the context of natural
+        readability, Thymeleaf and Angular are very similar, though I find Thymeleaf's dialectical syntax slightly more
+        accessible. Second, and more important, there simply isn't a need for such powerful tools. The views used in
+        this site are all very similar, with only some content changing from one page to the next. There are also
+        some small animated elements that do use base JS. However, the content served here is largely static;
+        dynamically generated
+        in the back end based on the URL for the page, but no page is overly reactive to user input on the front end.
+        For the purposes of this site, it makes more sense to leverage a tool that dynamically generates views from
+        input
+        to the back end controller, than tools that change the view once the data has been served to the front end.
+        Furthermore, Thymeleaf has a smaller footprint on the filesize: Thymeleaf dependencies are ~4KB, while
+        incorporating
+        Angular or React run in the >100KB range. This site doesn't require tools that powerful; don't use a
+        sledgehammer
+        to put in a picture-frame nail.</p>
+
+    <p>Check out source code on my <a href="https://api.github.com/users/PatrickPitts/repos">GitHub</a> account</p>
+</th:block>
+<th:block th:fragment="spellbook-mngr">
+    <h3>A Running application for 5th Edition Dungeons and Dragons enthusiasts</h3>
+    <p>Spellbook Manager is a web based application built with the Spring Boot framework, hosted on Heroku. It is a tool
+        used to facilitate
+        play for Dungeons and Dragons, 5th edition. For those that know about the game, keeping track of all the
+        available
+        spells in the game can be difficult and tedious, especially as the parent company, Wizards of the Coast,
+        continues
+        to add more content to the game. This application is meant to archive and organize that information in a more
+        accessible format. Users can research the available spells based on various search criteria, curate collections
+        of
+        spells for their Dungeons and Dragons characters in spellbooks, and administrators can input new spells through
+        an
+        inteface accessible only to those with proper credentials (this feature in particular is severely
+        underdeveloped,
+        an issue I'll discuss in later sections here).</p>
+    <h3>Beyond the Basics</h3>
+    <p>The front and back end of this application are built on Spring Boot and Thymeleaf, just like Exemplar is. To see
+        more on the basic MVC design of the app as well as the use of Thymeleaf, take a look at the
+        <a th:href="@{\app-dev\exemplar}">Exemplar page</a>. Following is a description of some additional technologies
+        and features implemented in this application.</p>
+    <h3>Data and (a lack of) Database integration</h3>
+    <p>Dungeons and Dragons has literally hundreds of spells to work with, with dozens more included with every major
+        content update. Furthermore, each spell has myriad featuers attached to it: school of magic, casting time, spell
+        level, classes that can cast it, just to name a few. While a simple JSON file could serve as a data storage
+        tool,
+        data involved and the access methods desired call for a more robust solution. Using the JDBC and JPA libraries,
+        I
+        was able to create a simple in-memory database that could implement basic SQL scripts built with the
+        <code>java.sql</code> library. Fillable forms on the home page allow users to filter on provided criteria,
+        generating
+        a custom collection of spell data (built dynamically with Thymeleaf, of course). Furthermore, registered users
+        can
+        create custom spellbooks, collections of spells selected from the general spell directory. Users can create new
+        spellbooks in their account, peruse the spells they've already selected (including navigating to the spell
+        description
+        while maintaining their logged in user status), and add or remove spells from their collection. All of this data
+        is
+        stored locally; not ideal, but well within the restrictions of free web hosting. This application is primed for
+        more
+        robust database integration; in the development of the project, I used MySQL on my local machine to develop the
+        data
+        scheme and populate the database. With the inclusion the <code>spring-boot-starter-jdbc</code> and
+        <code>spring-boot-starter-jpa</code> dependencies, along with configuration in the project's
+        <code>application.properties</code> file, the site could easily implement remote server storage solutions. At
+        this time however, the application still runs on an in-memory database. For this reason, in conjunction with the
+        limited data storage capacity of the hosting platform, spell data updates are not fully supported. The interface
+        for
+        inputting new spell data is available (I personally used these interfaces to populate the data in the first
+        place),
+        but when the submitted form is posted to the controller, the controller does not implement any business logic to
+        integrate the new data into the database. When hosting on a more robust platform with more robust data storage
+        options
+        becomes a possibility, the configuration for implementing such changes is already in place.</p>
+    <h3>Data Insecurity</h3>
+    <p>If you pour through the source code for this application (available on
+        <a href="https://github.com/PatrickPitts/spellbookmanager">my GitHub account</a>, feel free to take a look), you
+        will find a disabled (fully commented out, really) configuration class: <code>WebSecurityConfig.java</code>. The
+        purpose of this configuration class is to implement the also-commented-out
+        <code>spring-boot-starter-security</code>
+        dependency in the <code>pom.xml</code> file. When implementing this site, the purpose of these configurations
+        was
+        to implement secure access to the administrative features of the site: manipulating spell data, and accessing
+        and
+        manipulating user accounts and data. Spring Boot Security allows developers to control which types of user can
+        access
+        which content within the application. I had included the user account type in the database scheme implemented
+        for
+        user data, but I have yet to include the security configuration into the functionality of the site. So if I had
+        started the configuration and integration process, why not finish its implementation? Because time is a finite
+        resource,
+        and like all other resources one must be selective in where they are spent. Notice that the most recent branch
+        merge
+        for this application on GitHub was January 2020. Since then I have worked on other projects and other pursuits
+        (career,
+        mental health, education, family; life comes at you fast). As I move forward with new projects, I intend to
+        revisit
+        Spellbook Manager to update frontend features and configure the implementation of backend features.</p>
+    <h3>UI Tools, and Reinventing the Wheel</h3>
+    If you crack open the Dungeons and Dragons Player's Manual, you can find the collection of core spells for the game.
+    You may notice that each entry in the list of spells has a particular configuration to it: Its name, classification
+    properties, information about its basic mechanics, and a long form description of what it does. I created a
+    sophisticated
+    input form that is (meant to be) only accessible to site administrators that mirrors that configuration, so that
+    admin can
+    input new spells to the directory as Wizards of the Coast releases them. This form is designed to streamline the
+    input
+    process as much as possible, ensuring that admin can include the possible and relevant information efficiently.
+
+    When creating the directory UI, I attempted to emulate the information configuration found in the Player's Manual
+    with HTML/CSS. One hurdle in this was incorporating the style
+    choices used in the data storage scheme; spacing, data tables, paragraph indents, all were marked up in HTML,
+    especially for the text body of the spell description. But how to store this in my data scheme? I settled on
+    dropping the entire text body, markup and all, into the database as a single string. Thymeleaf includes
+    functionality to
+    interpret HTML from a string, so rendering stored markup was no problem. But this created a new problem: if I'm
+    adding a
+    new spell to the directory with my input form, how do I incorporate new markup? Typing up a new spell is tedious,
+    especially with the
+    more complex spells taking up an entire page worth of rules descriptions. Attempting to include markup in a
+    <code>&lt;textarea&gt;</code> became difficult to work with; the only way I could check the results of the input
+    markup was to save the text and check the newly input data in the main directory.
+    I recognized that much of the markup I used
+    was highly repeatable: line breaks and indenting were consistent collections of markup interjected in text,
+    reference
+    tables followed the same formatting, and several blocks of text indicating the same rules configuration populated
+    different spell descriptions. My solution was to create a series of JavaScript-powered markup generating macros;
+    small forms
+    that allowed me to input a bit of information, and generate a block of markup to populate with specific data. This
+    strategy worked out quite well for me personally, following along with the incredibly dangerous mentality of "it
+    works on <i>my</i> machine." Since then, I have found several rich text editor libraries that perform many of the
+    tasks I sought to complete, with realtime rendering (I use <a href="quiljs.com">Quill</a> in a small practice React
+    app I designed, for example. If you're interested, look at <a href="https://github.com/PatrickPitts/GridlyV1">GridlyV1</a>
+    on my GitHub account, but it is nowhere near ready for prime time.)
+
+
+    <p>Check out a running app: <a href="http://nerdcore.herokuapp.com/">Spellbook Manager</a></p>
+
+</th:block>
+<th:block th:fragment="gen">
+    <p>App dev technologies</p>
+    <p>Spring Boot</p>
+    <p>HTML/CSS</p>
+    <p>JS/React</p>
+    <p>MVC</p>
+</th:block>

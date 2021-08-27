@@ -1,10 +1,12 @@
-<th:block th:fragment="resume-page">
+<th:block th:fragment="link-head">
     <head>
         <link rel="stylesheet" th:href="@{/styles/res_styles.css}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet">
     </head>
+</th:block>
+<th:block th:fragment="resume-page">
     <body>
     <div class="resume-body">
         <div class="res-head">
@@ -12,7 +14,8 @@
                 <tr>
                     <td rowspan=2>
                         <div class="pic-wrap">
-                            <img th:src="@{/jpg/bad_selfie.jpg}" alt="Just a terrible picture of my unkempt face" src=""/>
+                            <img th:src="@{/jpg/bad_selfie.jpg}" alt="Just a terrible picture of my unkempt face"
+                                 src=""/>
                         </div>
                     </td>
                     <td>
@@ -20,7 +23,8 @@
                             <h2>John Patrick Pitts</h2>
                             <hr>
                             <div class="contact">
-                                patrick.pitts@gmail.com | (206)-565-6233 | <a href="https://github.com/PatrickPitts">GitHub</a> | <a href="#">LinkedIn</a>
+                                patrick.pitts@gmail.com | (206)-565-6233 | <a href="https://github.com/PatrickPitts">GitHub</a>
+                                | <a href="#">LinkedIn</a>
                             </div>
                         </div>
                     </td>
@@ -30,8 +34,10 @@
                         <div class="summary">
                             <h3>Professional Summary</h3>
                             Software Developer who brings a dynamic and team-oriented approach to my work to make each
-                            project the most impactful. Extensive experience with software architecture and documentation.
-                            Extremely knowledgeable in developing physics and mathematics-oriented systems. Seeking to apply
+                            project the most impactful. Extensive experience with software architecture and
+                            documentation.
+                            Extremely knowledgeable in developing physics and mathematics-oriented systems. Seeking to
+                            apply
                             an extensive skill set and growth mindset to develop new, scalable tools and technologies.
                         </div>
                     </td>
@@ -55,10 +61,12 @@
                 <h4 class="proj-title">DMTools</h4>
                 <h4 class="proj-subtitle">Personal Project</h4>
                 <ul class="proj-features">
-                    <li>Engineered a series of tools useful to manage characters and encounters for Dungeons and Dragons,
+                    <li>Engineered a series of tools useful to manage characters and encounters for Dungeons and
+                        Dragons,
                         5th Edition
                     </li>
-                    <li>Integrated Front-End Infrastructure developed using Javax Swing UI design technologies in Java</li>
+                    <li>Integrated Front-End Infrastructure developed using Javax Swing UI design technologies in Java
+                    </li>
                     <li>Introduced Back-End Infrastructure using Java with Object oriented field storage</li>
                     <li>Incorporated Data Management using custom .txt file formatting, pending JSON integration</li>
                 </ul>
@@ -190,3 +198,49 @@
 
 </th:block>
 
+<th:block th:fragment="footer-all">
+    <ul style="list-style-type: none">
+        <li><a th:href="@{\phys\gen}">\phys\gen</a></li>
+        <li><a th:href="@{\phys\double-pendulum}">\phys\double-pendulum</a></li>
+        <li><a th:href="@{\phys\comp}">\phys\comp</a></li>
+        <li><a th:href="@{\math\gen}">\math\gen</a></li>
+        <li><a th:href="@{\math\rk}">\math\rk</a></li>
+        <li><a th:href="@{\app-dev\exemplar}">\app-dev\exemplar</a></li>
+        <li><a th:href="@{\app-dev\spellbook-mngr}">\app-dev\spellbook-mngr</a></li>
+        <li><a th:href="@{\app-dev\gen}">\app-dev\gen</a></li>
+    </ul>
+</th:block>
+<th:block th:fragment="side-nav">
+    <div id="side-nav">
+        <h2>Navigate:</h2>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a th:href="@{\phys\gen}">\phys\gen</a>
+        <a th:href="@{\phys\double-pendulum}">\phys\double-pendulum</a>
+        <a th:href="@{\phys\comp}">\phys\comp</a>
+        <a th:href="@{\math\gen}">\math\gen</a>
+        <a th:href="@{\math\rk}">\math\rk</a>
+        <a th:href="@{\app-dev\exemplar}">\app-dev\exemplar</a>
+        <a th:href="@{\app-dev\spellbook-mngr}">\app-dev\spellbook-mngr</a>
+        <a th:href="@{\app-dev\gen}">\app-dev\gen</a>
+
+    </div>
+    <div id="side-nav-open" onclick="openNav()"> <b>&#10151;</b> </div>
+    <script type="text/javascript" th:src="@{/js/nav-anim.js}"></script>
+
+</th:block>
+<header th:classappend="${file}" th:fragment="header-all(title, subtitle)">
+    <div>
+        <h2>[[${title}]]</h2>
+        <h3 th:if="${subtitle != null}">[[${subtitle}]]</h3>
+    </div>
+</header>
+
+<div id="resume-nav" th:fragment = "resume-nav">
+
+    <div id="resume-nav-content">
+        <strong>Want to see more? Take a closer look at some of my work in:</strong><br>
+        <a th:href="@{\phys\gen}">Physics</a>
+        <a th:href="@{\math\gen}">Mathematics</a>
+        <a th:href="@{\app-dev\gen}">Application Development</a>
+        <a th:href="@{\cs\gen}">Computer Science</a></div>
+</div>

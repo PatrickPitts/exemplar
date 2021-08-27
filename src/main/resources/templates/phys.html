@@ -1,0 +1,71 @@
+<th:block th:fragment="gen">
+
+    <p>This page is about general physics.</p>
+    <p>Click <a th:href="@{\phys\double-pendulum}">Here</a> to see my work on the double pendulum </p>
+    <p>Click <a th:href="@{\phys\comp}">Here</a> to see my work with computational tools with physics </p>
+
+
+</th:block>
+<th:block th:fragment="double-pendulum">
+    <h3>The Double Pendulum</h3>
+    <p>The double pendulum is a fascinating Classical Mechanics problem. To create a double pendulum, one affixes a pendulum
+    to the bob of another pendulum. In this, one may consider the motion of the second bob relative to the first (kind
+    of boring really), or consider the motion of the second bob relative to the fixed contact point of the first pendulum.
+    Modeling this system involves solving coupled second order ordinary differential equations, myriad applications of
+    trigonometric functions and identities, sophisticated numerical approximation methods, and power computational tools.
+        Leveraging all of these resources, I was able to derive formulas that describe the motion of a double pendulum and
+        lend themselves well to numerical approximation; computationally generate data that accurately models that motion;
+        and create an elegant visualization of the evolution of a double pendulum system. Included here are several
+        examples of the sensitive, chaotic nature of the double pendulum, along with an in depth analysis of the physics and
+        mathematics used to create them. If you are interested in an in depth analysis, take a look at my report included in this
+        page. I will briefly address the key ideas here, as follows:
+    </p>
+    <h3>The Physics: Energy and Lagrange</h3>
+    <p>As with many physical models in classical mechanics, we begin with the analysis of the system by considering it's
+        energy states.
+        While energy conservation is a staple in system modeling, they do not necessarily predict the evolution of a
+        system over time.
+        In this case, I used a more sophisticated analytical tool, the Euler-Lagrange equation. In the case of a
+        mechanical system
+        such as this, the Euler-Lagrange equation is simply the <i>difference</i> between the kinetic and potential
+        energies. Properties
+        of the Euler-Lagrange equation allows us to relate its derivatives and partial derivatives in different
+        variables together,
+        in such a way that creates a set of time-dependant differential equations. With this, we are well on our way to
+    creating a set of purely time-dependant functions that perfectly describe the state of the system; that is, we could
+    drop any arbitrary time value into the functions, and get a perfectly accurate description of the state at that time.
+    Savvy readers may know that this pursuit will collapse, quickly.</p>
+
+    <h3>The Mathematics: Coupled Differential Equations, Changes in Variables, and the Runge-Kutta Methods</h3>
+    <p>By solving the Euler-Lagrange equation, I was able to create two coupled second order ordinary differential equations. Here we
+        run into a problem: these coupled ODEs cannot be de-coupled. Ultimately, the problem is generally non-analytic (there may
+        be some initial conditions, even non-trivial ones, that generate equations that can be solved algebraically, by hand. I am
+        after something more general than that). Fortunately, I have more tools than just those for solving differential equations.</p>
+    <p>At its core, Calculus is built upon the idea of approximating a function as a linear function. While further analysis of this
+    approximation allows us to move back into the realm of analytic certainty, the concept of approximating functions as simpler
+    ones still bears fruit when we cannot backtrack to algebraic analysis. The simplest numerical approximation tool available
+    to us for a problem like this is the forward Euler method: we use the information from the differential equations to
+    create a linear approximation of the system. Since the approximation can diverge wildly from the true state of the system,
+    we use only small steps in the linear approximation to create new approximations further into the evolution of the system.
+    While we have a tool, we can do better. The Runge-Kutta method goes one (or more!) step further by approximating the
+    system with a quadratic equation instead of a linear equation. Careful use of the Taylor Expansion about points at various
+    locations relative to the beginning and end of the approximating step forward shows that we can create approximating
+        quadratic equations, with surprisingly small error, to step through the evolution of our system. Customarily, and in this
+     particular case, we use the 4th Order Runge-Kutta method; the order here referring to the order of the error term remaining in
+     the approximation quadratic function. In this case, the error is proportional to the step size raised to the 4th power. With
+     small steps, the error shrinks at a quartic rate. While there are higher order methods available, they become harder to work
+     with as well; the 4th Order approximation is a reasonable balance between accuracy and simplicity.</p>
+    <p>And yet, another problems arises here. The Runge-Kutta method works only on 1st order differential equations, whereas
+    the results of the Euler-Lagrange are second order. There is a workaround however: introducing more variables. I defined several </p>
+    <p>this page is about the double pendulum</p>
+    <p>Click <a th:href="@{\phys\computational}">here</a> to see the computational tools used</p>
+    <p>Click <a th:href="@{\math\rk}">here</a> to see more on the mathematics behind the model</p>
+
+</th:block>
+<th:block th:fragment="comp">
+
+    <p>this page is about the computational tools and libraries I use in physics</p>
+    <p>Click <a th:href="@{\cs\python\sci}">here</a> to see more on the specific libraries used</p>
+    <p>Click <a th:href="@{\math\rk}">here</a> to see more on the mathematics connected to the computational tools</p>
+
+</th:block>
